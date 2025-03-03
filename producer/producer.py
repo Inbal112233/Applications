@@ -47,4 +47,5 @@ if __name__ == '__main__':
         sleep(2)
 
     connection.close()
-    print("Producer finished")
+    print("Producer finished1")
+    print("Producer finished2")

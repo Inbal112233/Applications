@@ -49,3 +49,4 @@ if __name__ == '__main__':
         channel.stop_consuming()
     connection.close()
     print("Consumer Finished")
+    print("Consumer Finished2")
