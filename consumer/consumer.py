@@ -9,6 +9,8 @@ def on_message(channel, method_frame, header_frame, body):
     LOG.info('Message has been received %s', body)
     channel.basic_ack(delivery_tag=method_frame.delivery_tag)
 
+    print("Consumer Started")
+
 
 if __name__ == '__main__':
     examples = sys.argv[0] + " -p 5672 -s rabbitmq "
@@ -46,3 +48,4 @@ if __name__ == '__main__':
     except KeyboardInterrupt:
         channel.stop_consuming()
     connection.close()
+    print("Consumer Finished")

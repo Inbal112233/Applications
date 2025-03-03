@@ -19,7 +19,7 @@ if __name__ == '__main__':
     if args.server == None:
         print "Missing required argument: -s/--server"
         sys.exit(1)
-
+    print("Producer started")
     # sleep a few seconds to allow RabbitMQ server to come up
     sleep(5)
 
@@ -47,3 +47,4 @@ if __name__ == '__main__':
         sleep(2)
 
     connection.close()
+    print("Producer finished")
