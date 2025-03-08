@@ -49,5 +49,6 @@ if __name__ == '__main__':
     except pika.exceptions.AMQPConnectionError as e:
         LOG.error(f"Error connecting to RabbitMQ: {e}")
     finally:
+        sleep(400)
         connection.close()
         print("Producer finished1")
