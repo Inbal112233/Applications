@@ -37,18 +37,17 @@ if __name__ == '__main__':
         # Turn on delivery confirmations
         channel.confirm_delivery()
 
-        for i in range(0, 30):  # Default repeat count
+        while True:
             if channel.basic_publish('', queue_name, "hello"):
                 LOG.info('Message has been delivered')
             else:
                 LOG.warning('Message NOT delivered')
 
-            sleep(2)
+            sleep(20)  # Send message every 20 seconds
 
-        print("Producer finished repeat as requested")
     except pika.exceptions.AMQPConnectionError as e:
         LOG.error(f"Error connecting to RabbitMQ: {e}")
     finally:
-        sleep(400)
+        # Ensure the connection is closed properly when stopped
         connection.close()
-        print("Producer finished1")
+        print("Producer finished")
