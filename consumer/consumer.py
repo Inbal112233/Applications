@@ -7,13 +7,20 @@ from prometheus_client import Counter, generate_latest, CONTENT_TYPE_LATEST
 
 # Configuration
 RABBITMQ_HOST = os.getenv("RABBITMQ_HOST", "my-rabbitmq")
-RABBITMQ_PORT = int(os.getenv("RABBITMQ_PORT", 5672))
+RABBITMQ_PORT_STR = (os.getenv("RABBITMQ_PORT", 5672))
 RABBITMQ_USER = os.getenv("RABBITMQ_USER", "user")
 RABBITMQ_PASS = os.getenv("RABBITMQ_PASSWORD", "2VU5D1rt31")  # Use a secret in production
 QUEUE_NAME = os.getenv("QUEUE_NAME", "test_queue")
 
 # Prometheus metric
 MESSAGE_COUNT = Counter("consumer_messages_count", "Number of messages consumed")
+
+try:
+    RABBITMQ_PORT = int(RABBITMQ_PORT_STR)  # Convert to integer *just before use*
+except ValueError:
+    print(f"Error: Invalid RABBITMQ_PORT: {RABBITMQ_PORT_STR}. Must be an integer.")
+    # Handle the error appropriately (e.g., exit, use a default)
+    exit(1)  # Or use a default port
 
 # Connect to RabbitMQ
 credentials = pika.PlainCredentials(RABBITMQ_USER, RABBITMQ_PASS)

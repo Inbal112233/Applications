@@ -1,6 +1,16 @@
-FROM python:2.7-slim
-ENV PYTHONPATH /usr/src/app
+# Use a minimal Python image
+FROM python:3.9-slim
+
+# Set the working directory inside the container
 WORKDIR /app
-ADD producer.py /app
-ADD requirements.txt /app
-RUN pip install --requirement /app/requirements.txt
+
+# Copy the application code into the container
+COPY producer.py /app/producer.py
+COPY requirements.txt /app/requirements.txt
+
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Run the producer
+CMD ["python", "/app/producer.py"]
+

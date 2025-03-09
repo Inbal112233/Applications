@@ -50,4 +50,4 @@ while True:
     print(f" Sent: {message}")
     logging.info(f"Sent: {message}")
     counter += 1
-    time.sleep(20)  # Wait 20 seconds before sending the next message
+    time.sleep(X_SECONDS)  # Wait 20 seconds before sending the next message
