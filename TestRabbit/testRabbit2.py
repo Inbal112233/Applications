@@ -42,12 +42,12 @@ print(f" Connected to RabbitMQ at {RABBITMQ_HOST}:{RABBITMQ_PORT}, sending {Y_TI
 
 # Infinite loop to send messages every 20 seconds
 counter = 1
-print(" Producer started, sending messages every 20 seconds...")
+print("🚀 Producer started, sending messages every 20 seconds...")
 
 while True:
     message = f"Message {counter}"
     channel.basic_publish(exchange='', routing_key=QUEUE_NAME, body=message)
-    print(f" Sent: {message}")
+    print(f"📤 Sent: {message}")
     logging.info(f"Sent: {message}")
     counter += 1
     time.sleep(20)  # Wait 20 seconds before sending the next message
