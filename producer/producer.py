@@ -1,7 +1,7 @@
-import pika
+
+import logging
 import os
 import time
-import logging
 
 # Setup logging
 logging.basicConfig(level=logging.DEBUG, format="%(asctime)s - %(levelname)s - %(message)s")
@@ -12,8 +12,9 @@ print(f" Starting Producer")
 
 # Configuration
 RABBITMQ_HOST = os.getenv("RABBITMQ_HOST", "my-rabbitmq")  # Default service name in Minikube
-RABBITMQ_PORT = int(os.getenv("RABBITMQ_PORT", 5672))
 """
+RABBITMQ_PORT = int(os.getenv("RABBITMQ_PORT", 5672))
+
 RABBITMQ_USER = os.getenv("RABBITMQ_USER", "user")  # Adjust if needed
 RABBITMQ_PASS = os.getenv("RABBITMQ_PASSWORD", "2VU5D1rt31")  # Use secret in production
 
