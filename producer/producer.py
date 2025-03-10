@@ -1,7 +1,7 @@
 
-import logging
-import os
-import time
+#import logging
+#import os
+#import time
 
 # Setup logging
 logging.basicConfig(level=logging.DEBUG, format="%(asctime)s - %(levelname)s - %(message)s")
@@ -9,10 +9,10 @@ logging.basicConfig(level=logging.DEBUG, format="%(asctime)s - %(levelname)s - %
 logging.info(f"Starting Producer ")
 print(f" Starting Producer")
 
-
+"""
 # Configuration
 RABBITMQ_HOST = os.getenv("RABBITMQ_HOST", "my-rabbitmq")  # Default service name in Minikube
-"""
+
 RABBITMQ_PORT = int(os.getenv("RABBITMQ_PORT", 5672))
 
 RABBITMQ_USER = os.getenv("RABBITMQ_USER", "user")  # Adjust if needed
