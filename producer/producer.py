@@ -61,3 +61,5 @@ counter = 1
 while True:
     message = f"Message {counter}"
     print(f" Sent: {message}")
+    counter += 10
+    time.sleep(20)
