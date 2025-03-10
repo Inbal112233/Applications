@@ -6,12 +6,12 @@ import time
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
 logging.debug(f"Starting Producer")
-
+print(f" Starting Producer")
 #for debugging crashes
 time.sleep(30)
 
 # Configuration
-RABBITMQ_HOST = os.getenv("RABBITMQ_HOST", "my-rabbitmq")  # Default service name in Minikube
+RABBITMQ_HOST = os.getenv("RABBITMQ_HOST", "localhost")  # Default service name in Minikube
 RABBITMQ_USER = os.getenv("RABBITMQ_USER", "user")  # Adjust if needed
 RABBITMQ_PASS = os.getenv("RABBITMQ_PASSWORD", "2VU5D1rt31")  # Use secret in production
 RABBITMQ_PORT = int(os.getenv("RABBITMQ_PORT", 5672))
@@ -20,6 +20,7 @@ X_SECONDS = int(os.getenv("MESSAGE_INTERVAL", 5))  # Every X seconds
 #Y_TIMES = int(os.getenv("MESSAGE_COUNT", 10))  # removed once moved to endless loop
 
 logging.debug(f" finished reading env variables ")
+print(f" finished reading env variables")
 
 # Connect to RabbitMQ
 credentials = pika.PlainCredentials(RABBITMQ_USER, RABBITMQ_PASS)
@@ -32,6 +33,7 @@ channel = connection.channel()
 channel.queue_declare(queue=QUEUE_NAME, durable=True)
 
 logging.debug(f"Connected to RabbitMQ at {RABBITMQ_HOST}, sending messages to {QUEUE_NAME}")
+print(f" fConnected to RabbitMQ ")
 
 for i in range(1, 5 + 1):
     message = f"Message {i} from producer"
