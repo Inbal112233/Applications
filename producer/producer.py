@@ -9,15 +9,18 @@ logging.basicConfig(level=logging.DEBUG, format="%(asctime)s - %(levelname)s - %
 logging.info(f"Starting Producer ")
 print(f" Starting Producer")
 
+
 # Configuration
 RABBITMQ_HOST = os.getenv("RABBITMQ_HOST", "my-rabbitmq")  # Default service name in Minikube
 RABBITMQ_PORT = int(os.getenv("RABBITMQ_PORT", 5672))
+"""
 RABBITMQ_USER = os.getenv("RABBITMQ_USER", "user")  # Adjust if needed
 RABBITMQ_PASS = os.getenv("RABBITMQ_PASSWORD", "2VU5D1rt31")  # Use secret in production
+
 QUEUE_NAME = os.getenv("QUEUE_NAME", "test_queue")
 X_SECONDS = int(os.getenv("MESSAGE_INTERVAL", 5))  # Every X seconds
 #Y_TIMES = int(os.getenv("MESSAGE_COUNT", 10))  # removed once moved to endless loop
-
+"""
 logging.info(f" finished reading env variables ")
 print(f" finished reading env variables ")
 """
@@ -57,9 +60,10 @@ while True:
     counter += 1
     time.sleep(X_SECONDS)  # Wait 20 seconds before sending the next message
 """
+time.sleep(360)
 counter = 1
 while True:
     message = f"Message {counter}"
     print(f" Sent: {message}")
     counter += 10
-    time.sleep(20)
+    time.sleep(10)
