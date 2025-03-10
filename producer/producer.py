@@ -4,18 +4,23 @@ import time
 import logging
 
 # Setup logging
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+logging.basicConfig(level=logging.DEBUG, format="%(asctime)s - %(levelname)s - %(message)s")
+
+logging.info(f"Starting Producer ")
+print(f" Starting Producer")
 
 # Configuration
 RABBITMQ_HOST = os.getenv("RABBITMQ_HOST", "my-rabbitmq")  # Default service name in Minikube
 RABBITMQ_PORT = int(os.getenv("RABBITMQ_PORT", 5672))
 RABBITMQ_USER = os.getenv("RABBITMQ_USER", "user")  # Adjust if needed
 RABBITMQ_PASS = os.getenv("RABBITMQ_PASSWORD", "2VU5D1rt31")  # Use secret in production
-
-QUEUE_NAME = "test_queue"
+QUEUE_NAME = os.getenv("QUEUE_NAME", "test_queue")
 X_SECONDS = int(os.getenv("MESSAGE_INTERVAL", 5))  # Every X seconds
-Y_TIMES = int(os.getenv("MESSAGE_COUNT", 10))  # Send Y messages
+#Y_TIMES = int(os.getenv("MESSAGE_COUNT", 10))  # removed once moved to endless loop
 
+logging.info(f" finished reading env variables ")
+print(f" finished reading env variables ")
+"""
 # Connect to RabbitMQ
 credentials = pika.PlainCredentials(RABBITMQ_USER, RABBITMQ_PASS)
 parameters = pika.ConnectionParameters(host=RABBITMQ_HOST, port=RABBITMQ_PORT, credentials=credentials)
@@ -51,3 +56,8 @@ while True:
     logging.info(f"Sent: {message}")
     counter += 1
     time.sleep(X_SECONDS)  # Wait 20 seconds before sending the next message
+"""
+counter = 1
+while True:
+    message = f"Message {counter}"
+    print(f" Sent: {message}")
