@@ -1,7 +1,6 @@
 
-#import logging
-#import os
-#import time
+import pika, logging, sys, os
+from time import sleep
 
 # Setup logging
 logging.basicConfig(level=logging.DEBUG, format="%(asctime)s - %(levelname)s - %(message)s")
